@@ -4,55 +4,29 @@ namespace RentProjectAPI.Services.CustomerService
 {
     public class CustomerService : ICustomerService
     {
-        private static List<Customer> Customers = new List<Customer>
-            {
-
-                new Customer
-                {
-                    ID = 1,
-                    KullaniciAdi = "Hunckol",
-                    CustomerAdi = "Emre",
-                    CustomerSoyadi = "Şeftali",
-                    TC = "40882421098",
-                    Mail = "emresabotic30@hotmail.com",
-                    Telefon = "05374240918",
-                    Aciklama = "İlk Müşteri."
-                },
-                new Customer
-                {
-                    ID = 2,
-                    KullaniciAdi = "basaranefe",
-                    CustomerAdi = "Efe",
-                    CustomerSoyadi = "Başaran",
-                    TC = "5342534256",
-                    Mail = "efebasaran@hotmail.com",
-                    Telefon = "05312456752",
-                    Aciklama = "İkinci Müşteri."
-
-                }
-
-
-            };
+       
 
         private readonly DataContext _context;
         public CustomerService(DataContext context)
         {
             _context = context; 
         }
-        public List<Customer> AddCustomer(Customer singlecustomer)
+        public async Task<List<Customer>> AddCustomer(Customer singlecustomer)
         {
-            Customers.Add(singlecustomer);
-            return Customers;
+            _context.tblCustomer.Add(singlecustomer);
+            await _context.SaveChangesAsync();
+            return await _context.tblCustomer.ToListAsync();
         }
 
-        public List<Customer>? DeleteCustomer(int id)
+        public async Task<List<Customer>?> DeleteCustomer(int id)
         {
-            var singlecustomer = Customers.Find(x => x.ID == id);
+            var singlecustomer = await _context.tblCustomer.FindAsync(id);
             if (singlecustomer is null)
                 return null;
 
-            Customers.Remove(singlecustomer);
-            return Customers;
+            _context.tblCustomer.Remove(singlecustomer);
+            await _context.SaveChangesAsync();
+            return await _context.tblCustomer.ToListAsync();
         }
 
         public async Task<List<Customer>> GetAllCustomers()
@@ -61,28 +35,34 @@ namespace RentProjectAPI.Services.CustomerService
             return singlecustomer1;
         }
 
-        public Customer GetSingleCustomer(int id)
+        public async Task<Customer?> GetSingleCustomer(int id)
         {
-            var singlecustomer = Customers.Find(x => x.ID == id);
+            var singlecustomer = await _context.tblCustomer.FindAsync(id);
             if (singlecustomer is null)
                 return null;
             return singlecustomer;
         }
 
-        public List<Customer>? UpdateCustomer(int id, Customer request)
+        public async Task<List<Customer>?> UpdateCustomer(int id, Customer request)
         {
-            var singlecustomer = Customers.Find(x => x.ID == id);
+            var singlecustomer = await _context.tblCustomer.FindAsync(id);
             if (singlecustomer is null)
                 return null;
 
             singlecustomer.KullaniciAdi = request.KullaniciAdi;
             singlecustomer.CustomerAdi = request.CustomerAdi;
             singlecustomer.CustomerSoyadi = request.CustomerSoyadi;
+            singlecustomer.Aktiflik=request.Aktiflik;
             singlecustomer.TC = request.TC;
             singlecustomer.Mail = request.Mail;
             singlecustomer.Telefon = request.Telefon;
+            singlecustomer.LastVisitInDate= request.LastVisitInDate;
+            singlecustomer.LastVisitOutDate = request.LastVisitOutDate;
+            singlecustomer.CustomerType = request.CustomerType;
             singlecustomer.Aciklama = request.Aciklama;
-            return Customers;
+
+            await _context.SaveChangesAsync();
+            return await _context.tblCustomer.ToListAsync();
         }
     }
 }

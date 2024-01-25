@@ -25,7 +25,7 @@ namespace RentProjectAPI.Controllers
 
         public async Task<ActionResult<Customer>> GetSingleCustomer(int id)
         {
-            var result = _customerService.GetSingleCustomer(id);
+            var result = await _customerService.GetSingleCustomer(id);
             if (result is null)
                 return NotFound("Aradağınız müşteri bulunamadı.");
             return Ok(result);
@@ -34,7 +34,7 @@ namespace RentProjectAPI.Controllers
 
         public async Task<ActionResult<List<Customer>>> AddCustomer(Customer singlecustomer)
         {
-            var result = _customerService.AddCustomer(singlecustomer);
+            var result = await _customerService.AddCustomer(singlecustomer);
            
             return Ok(result);
         }
@@ -42,7 +42,7 @@ namespace RentProjectAPI.Controllers
 
         public async Task<ActionResult<List<Customer>>> UpdateCustomer(int id, Customer request)
         {
-            var result = _customerService.UpdateCustomer(id, request);
+            var result = await _customerService.UpdateCustomer(id, request);
             if (result is null)
                 return NotFound("Aradağınız müşteri bulunamadı.");
             return Ok(result);
@@ -51,7 +51,7 @@ namespace RentProjectAPI.Controllers
 
         public async Task<ActionResult<List<Customer>>> DeleteCustomer(int id)
         {
-           var result = _customerService.DeleteCustomer(id);
+           var result = await _customerService.DeleteCustomer(id);
             if (result is null)
                 return NotFound("Aradağınız müşteri bulunamadı.");
             return Ok(result);

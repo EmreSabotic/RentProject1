@@ -3,11 +3,11 @@
     public interface ICustomerService
     {
         Task<List<Customer>> GetAllCustomers();
-        Customer? GetSingleCustomer(int id);
+        Task<Customer?> GetSingleCustomer(int id);
 
-        List<Customer> AddCustomer(Customer singlecustomer);
-        List<Customer>? UpdateCustomer(int id, Customer request);
-        List<Customer>? DeleteCustomer(int id);
+        Task<List<Customer>> AddCustomer(Customer singlecustomer);
+        Task<List<Customer>?> UpdateCustomer(int id, Customer request);
+        Task<List<Customer>?> DeleteCustomer(int id);
 
     }
 }

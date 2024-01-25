@@ -11,15 +11,9 @@ namespace RentProjectAPI.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         
-             => optionsBuilder.UseSqlServer("Data Source=DESKTOP-37OLJFD\\SQL2012;Initial Catalog=RentProjesiDB;User ID=sa;Password=;TrustServerCertificate=true");
+             => optionsBuilder.UseSqlServer("Data Source=LAPTOP-KIFERO8A;Initial Catalog=RentProjesiDB;User ID=sa;Password=E13971397.P;TrustServerCertificate=true");
         
-        /*
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=.\\LAPTOP-KIFERO8A;Database=RentProjesiDB;Trusted_Connection=true;TrustServerCertificate=true;");
-        }
-        */
+      
         public DbSet<Customer> tblCustomer { get; set; }
     } 
 }
