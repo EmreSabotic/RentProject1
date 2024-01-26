@@ -14,6 +14,7 @@
         public int AzamiSure { get; set; }
         public DateTime CreateDateTime { get; set; }
         public int FiyatID { get; set; }
+
   
     }
 }

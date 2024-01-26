@@ -2,6 +2,8 @@ global using RentProjectAPI.Models;
 global using RentProjectAPI.Data;
 global using RentProjectAPI.Services;
 using RentProjectAPI.Services.CustomerService;
+using RentProjectAPI.Services.BirimService;
+using RentProjectAPI.Services.CariService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IBirimService, BirimService>();
+builder.Services.AddScoped<ICariService, CariService>();
+
 builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();

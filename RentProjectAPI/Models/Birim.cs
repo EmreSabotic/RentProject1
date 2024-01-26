@@ -6,5 +6,6 @@
         public string BirimKodu { get; set; }
         public string BirimAdi { get; set; }
         public DateTime CreateDateTime { get; set; }
+
     }
 }

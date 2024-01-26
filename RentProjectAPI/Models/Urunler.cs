@@ -9,4 +9,5 @@
         public string UrunAdi { get; set; }
         public decimal UrunAdeti { get; set; }
     }
+
 }
