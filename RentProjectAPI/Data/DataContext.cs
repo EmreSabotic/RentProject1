@@ -25,7 +25,7 @@ namespace RentProjectAPI.Data
         public DbSet<Kategoriler> tblKategoriler { get; set; }
         public DbSet<Kullanici> tblKullanici { get; set; }
         public DbSet<PcMaster> tblPcMaster { get; set; }
-        public DbSet<PcPosMaster> tblPcPosMaster { get; set; }
+        public DbSet<PcPosMaster> tblPcPosMasterDetail { get; set; }
         public DbSet<Stok> tblStok { get; set; }
         public DbSet<Urunler> tblUrunler { get; set; }
     } 
